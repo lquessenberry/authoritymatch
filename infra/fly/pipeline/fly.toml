@@ -1,0 +1,23 @@
+app = "authoritymatch-pipeline"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  BATCH_SIZE = "1000"
+  CHECKPOINT_INTERVAL = "5000"
+  OUTPUT_DIR = "/data"
+
+[[mounts]]
+  source = "data_volume"
+  destination = "/data"
+
+[[vm]]
+  size = "performance-2x"  # 2 CPU, 4GB RAM for large CSV processing
+  memory = "4gb"
+
+# Only run when triggered (not as a service)
+[processes]
+  app = "sleep infinity"  # Keep alive for SSH/exec access

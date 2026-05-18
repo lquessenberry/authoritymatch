@@ -1,0 +1,107 @@
+name: Ingest FMCSA CSV on Fly.io
+
+on:
+  workflow_dispatch:
+    inputs:
+      state:
+        description: 'State filter (e.g., AR)'
+        required: true
+        default: 'AR'
+      csv_url:
+        description: 'CSV download URL (optional)'
+        required: false
+        default: ''
+      vm_size:
+        description: 'Fly VM size'
+        type: choice
+        options:
+          - shared-cpu-1x
+          - dedicated-cpu-1x
+          - performance-1x
+          - performance-2x
+        default: 'performance-2x'
+
+env:
+  FLY_APP_NAME: authoritymatch-pipeline
+
+jobs:
+  ingest-on-fly:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Fly CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy Pipeline App
+        run: |
+          cd infra/fly/pipeline
+          flyctl deploy --app ${{ env.FLY_APP_NAME }} \
+            --env STATE_FILTER=${{ github.event.inputs.state }} \
+            --env BATCH_SIZE=1000 \
+            --env CHECKPOINT_INTERVAL=10000 \
+            --vm-size ${{ github.event.inputs.vm_size }} \
+            --wait-timeout=600
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Download CSV (if URL provided)
+        if: github.event.inputs.csv_url != ''
+        run: |
+          flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+            --command "curl -L -o /data/fmcsa.csv '${{ github.event.inputs.csv_url }}' && ls -lh /data/fmcsa.csv"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Run Ingestion
+        run: |
+          flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+            --command "cd /app && node batch-ingest.js /data/fmcsa.csv 2>&1 | tee /data/ingest.log" &
+          
+          # Monitor for up to 30 minutes
+          for i in {1..180}; do
+            sleep 10
+            STATUS=$(flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+              --command "cat /data/checkpoint.json 2>/dev/null | jq -r '.lastLine // 0'" 2>/dev/null || echo "0")
+            echo "Progress: $STATUS lines processed"
+            
+            if [ "$STATUS" -gt 4400000 ]; then
+              echo "Ingestion complete!"
+              break
+            fi
+          done
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Get Results
+        run: |
+          flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+            --command "cat /data/checkpoint.json && ls -lh /data/batch_*.json | head -10"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Upload to S3 (optional)
+        if: secrets.AWS_ACCESS_KEY_ID != ''
+        run: |
+          flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+            --command "aws s3 sync /data/batch_*.json s3://authoritymatch-batches/${{ github.event.inputs.state }}/$(date +%Y%m%d)/"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Scale down
+        if: always()
+        run: |
+          flyctl scale count 0 --app ${{ env.FLY_APP_NAME }}
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "## Ingestion Complete 🎉" >> $GITHUB_STEP_SUMMARY
+          echo "- **State**: ${{ github.event.inputs.state }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **App**: ${{ env.FLY_APP_NAME }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **VM Size**: ${{ github.event.inputs.vm_size }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Time**: $(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_STEP_SUMMARY
