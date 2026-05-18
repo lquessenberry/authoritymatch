@@ -1,0 +1,10 @@
+{
+  "name": "drupal/authoritymatch",
+  "description": "AuthorityMatch recipe for trucker-factor matching platform",
+  "type": "drupal-recipe",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^11",
+    "nextagencyio/drupalx_decoupled": "^1.0"
+  }
+}

@@ -1,0 +1,145 @@
+{
+    "name": "drupalninja/drupalx-decoupled",
+    "description": "Enterprise template for decoupled Drupal projects.",
+    "license": "GPL-2.0-or-later",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jay Callicott",
+            "role": "Project Lead"
+        }
+    ],
+    "require": {
+        "composer/installers": "^2.1",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/core-composer-scaffold": "^11.0",
+        "drupal/core-project-message": "^11.0",
+        "drupal/core-recommended": "^11.0",
+        "drupal/decoupled_preview_iframe": "^1.0",
+        "drupal/graphql_compose_fragments": "1.0.x-dev",
+        "drupal/graphql_compose_preview": "^1.0",
+        "drupal/simple_oauth": "5.2.x-dev",
+        "drupalninja/drupalx-core": "3.x-dev",
+        "drupalninja/drupalx-paragraphs": "^1.0",
+        "drupalninja/drupalx_ai": "2.x-dev",
+        "drush/drush": "^11 || ^12 || ^13",
+        "nextagencyio/drupalx-demo": "^1.0",
+        "nextagencyio/drupalx-gov": "^1.0",
+        "nextagencyio/drupalx-nonprofit": "1.0",
+        "nextagencyio/drupalx-university": "^1.0",
+        "nextagencyio/drupalx_setup": "^1.0",
+        "oomphinc/composer-installers-extender": "^2.0",
+        "vlucas/phpdotenv": "^5.1",
+        "webflo/drupal-finder": "^1.2"
+    },
+    "require-dev": {
+        "drupal/core-dev": "^11.0",
+        "ergebnis/composer-normalize": "^2.42"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://git.drupalcode.org/issue/simple_oauth-3532181.git"
+        },
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ],
+        "files": [
+            "load.environment.php"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "ergebnis/composer-normalize": true,
+            "oomphinc/composer-installers-extender": true,
+            "php-http/discovery": true,
+            "phpstan/extension-installer": true,
+            "tbachert/spi": true
+        },
+        "discard-changes": true,
+        "sort-packages": true
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            }
+        },
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "recipes/{$name}": [
+                "type:drupal-recipe"
+            ]
+        },
+        "installer-types": [
+            "bower-asset",
+            "npm-asset",
+            "drupal-recipe"
+        ],
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "drupal/core": {
+                "Suppress unexpected type error when Recipes are applied": "patches/recipes-unexpected-type.patch"
+            },
+            "drupal/decoupled_preview_iframe": {
+                "Drupal 11 compatibility: Add TypedConfigManagerInterface support": "patches/decoupled-preview-iframe-drupal11-fix.patch"
+            }
+        }
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    }
+}

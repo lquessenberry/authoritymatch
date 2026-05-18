@@ -1,0 +1,70 @@
+name: 'AuthorityMatch Base'
+description: 'Installs AuthorityMatch content types, taxonomy, and configuration for trucker-factor matching.'
+type: 'Site'
+recipes:
+  - core/recipes/standard
+  - nextagencyio/drupalx_decoupled_content
+install:
+  # Core
+  - node
+  - field
+  - field_ui
+  - taxonomy
+  - user
+  - system
+  - text
+  - options
+  - datetime
+  - file
+  - image
+  - views
+  - views_ui
+  # Contrib
+  - graphql_compose
+  - simple_oauth
+  - paragraphs
+  - paragraphs_ee
+  - entity_reference_revisions
+  - field_group
+  - admin_toolbar
+  - admin_toolbar_tools
+  # Custom
+  - authoritymatch_core
+config:
+  import:
+    node:
+      - field.field.node.authority_record.field_mc_number
+      - field.field.node.authority_record.field_dot_number
+      - field.field.node.authority_record.field_company_name
+      - field.field.node.authority_record.field_contact_info
+      - field.field.node.authority_record.field_authority_date
+      - field.field.node.authority_record.field_equipment_type
+      - field.field.node.authority_record.field_factoring_status
+      - field.field.node.authority_record.field_credit_score
+      - field.field.node.authority_record.field_monthly_volume
+      - field.field.node.authority_record.field_years_in_business
+      - field.field.node.authority_record.field_safety_rating
+      - field.field.node.authority_record.field_location
+      - node.type.authority_record
+    taxonomy:
+      - taxonomy.vocabulary.equipment_types
+      - taxonomy.vocabulary.factoring_status
+      - taxonomy.vocabulary.credit_tiers
+      - taxonomy.vocabulary.volume_ranges
+  actions:
+    # Set up user roles
+    user.role.trucker:
+      ensure_exists:
+        id: trucker
+        label: 'Trucker'
+        weight: 3
+    user.role.factor_admin:
+      ensure_exists:
+        id: factor_admin
+        label: 'Factor Admin'
+        weight: 4
+    user.role.network_admin:
+      ensure_exists:
+        id: network_admin
+        label: 'Network Admin'
+        weight: 5

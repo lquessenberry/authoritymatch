@@ -1,0 +1,4 @@
+ai_provider_model: 'groq:default'
+image_generator: placeholder
+pexels_api_key: ''
+unsplash_api_key: ''

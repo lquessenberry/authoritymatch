@@ -1,0 +1,139 @@
+name: CI Tests
+
+on:
+  push:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+env:
+  COMPOSER_MEMORY_LIMIT: -1
+  SIMPLETEST_DB: sqlite://tmp/site.sqlite
+  SIMPLETEST_BASE_URL: "http://127.0.0.1:8080"
+
+jobs:
+  php-cypress-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: ["8.3"]
+        drupal-release: ["stable"]
+        composer-channel: ["stable"]
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Step 2: Setup PHP environment
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: gd, pdo_sqlite
+
+      # Step 3: Setup Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      # Step 4: Update Composer, validate configuration, and audit dependencies
+      - name: Update Composer
+        run: composer --verbose self-update --${{ matrix.composer-channel }}
+
+      - name: Validate composer.json
+        run: composer --verbose validate
+
+      - name: Audit Composer dependencies
+        run: composer --verbose audit
+
+      # Step 5: Install dependencies
+      - name: Install Composer dependencies
+        run: composer --verbose install
+
+      - name: Install NPM dependencies
+        run: npm install
+        working-directory: ./tests/cypress
+
+      # Step 6: Setup and start the server
+      - name: Install site
+        run: ./vendor/bin/drush site-install minimal --verbose --yes --db-url=sqlite://tmp/site.sqlite --account-name=admin --account-pass=admin
+
+      - name: Apply DrupalX GraphQL Recipe
+        run: ./vendor/bin/drush recipe ../recipes/drupalx-graphql
+
+      - name: Apply DrupalX Core Recipe
+        run: ./vendor/bin/drush recipe ../recipes/drupalx-core
+
+      - name: Setup OAuth consumers
+        run: ./vendor/bin/drush scr scripts/consumers-next.php
+
+      - name: Cache rebuild
+        run: ./vendor/bin/drush cr
+
+      - name: Start server
+        run: |
+          ./vendor/bin/drush runserver "$SIMPLETEST_BASE_URL" &
+          until curl -s "$SIMPLETEST_BASE_URL"; do true; done > /dev/null
+
+      # Step 7: Install Xvfb for Cypress
+      - name: Install Xvfb
+        run: sudo apt-get install -y xvfb
+
+      - name: Start Xvfb
+        run: Xvfb :99 -screen 0 1280x1024x24 &
+        env:
+          DISPLAY: :99.0
+
+      # Step 8: Copy Cypress configuration and run tests
+      - name: Copy Cypress configuration
+        run: cp tests/cypress/cypress.config.js.shippable tests/cypress/cypress.config.js
+
+      - name: Run Cypress tests
+        run: npm run cypress
+        working-directory: ./tests/cypress
+        env:
+          DISPLAY: :99.0
+
+  nextjs-storybook-cypress-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Install NPM dependencies
+        run: npm install
+        working-directory: ./nextjs
+
+      - name: Install Xvfb
+        run: sudo apt-get install -y xvfb
+
+      - name: Start Xvfb
+        run: Xvfb :99 -screen 0 1280x1024x24 &
+        env:
+          DISPLAY: :99.0
+
+      - name: Start Storybook
+        run: npm run storybook &
+        working-directory: ./nextjs
+        env:
+          DISPLAY: :99.0
+
+      - name: Wait for Storybook to be ready
+        run: npx wait-on --timeout 60000 http://localhost:6006
+        working-directory: ./nextjs
+
+      - name: Run Cypress tests
+        run: npm run cypress
+        working-directory: ./nextjs
+        env:
+          DISPLAY: :99.0

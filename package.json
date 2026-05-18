@@ -1,0 +1,26 @@
+{
+  "name": "authoritymatch",
+  "private": true,
+  "description": "AuthorityMatch — Connecting truckers with factoring partners",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,js,css}\"",
+    "drupal:install": "cd drupal && ddev install",
+    "drupal:start": "cd drupal && ddev start",
+    "drupal:stop": "cd drupal && ddev stop",
+    "fly:deploy:drupal": "fly deploy --config infra/fly/drupal/fly.toml",
+    "fly:deploy:web": "fly deploy --config infra/fly/web/fly.toml",
+    "fly:deploy:dashboard": "fly deploy --config infra/fly/dashboard/fly.toml"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.5"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  }
+}

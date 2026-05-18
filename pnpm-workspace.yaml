@@ -1,0 +1,5 @@
+packages:
+  - "apps/*"
+  - "apps/*/nextjs"
+  - "packages/*"
+  - "drupal/nextjs"
