@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuthorityMatch • New Authority to Funded, Faster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #0F172A;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-scrolled {
+            box-shadow: 0 1px 0 0 rgb(15 23 42 / 0.05);
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .narrative-card {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                       box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .narrative-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .flow-step {
+            position: relative;
+        }
+        
+        .flow-step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 2.25rem;
+            left: 1.1rem;
+            width: 2px;
+            height: calc(100% - 2.5rem);
+            background: linear-gradient(to bottom, #64748b, transparent);
+        }
+
+        .metric {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    <!-- Navigation -->
+    <nav class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <div class="flex items-center gap-x-3">
+                    <div class="flex items-center gap-x-2">
+                        <div class="w-9 h-9 bg-amber-500 rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-link text-slate-900 text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-display text-2xl font-semibold tracking-tighter">AuthorityMatch</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-x-8 text-sm">
+                    <a href="#how-it-works" class="hover:text-white transition-colors">How it works</a>
+                    <a href="#for-truckers" class="hover:text-white transition-colors">For Truckers</a>
+                    <a href="#for-factors" class="hover:text-white transition-colors">For Factors</a>
+                    <a href="#network" class="hover:text-white transition-colors">The Network</a>
+                </div>
+                
+                <div class="flex items-center gap-x-3">
+                    <a href="#for-truckers" 
+                       class="px-5 py-2.5 text-sm font-medium rounded-2xl border border-slate-700 hover:bg-slate-900 transition-colors">
+                        I'm a new trucker
+                    </a>
+                    <a href="#for-factors" 
+                       class="px-5 py-2.5 text-sm font-medium bg-white text-slate-900 rounded-2xl hover:bg-amber-100 transition-colors flex items-center gap-x-2">
+                        <span>I'm a factoring company</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="max-w-screen-xl mx-auto px-8 pt-16 pb-12">
+        <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-x-2 bg-slate-900 border border-slate-800 rounded-3xl px-4 py-1.5 mb-6">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span class="text-sm font-medium">Now in pilot with the Jonesboro Factoring Network</span>
+            </div>
+            
+            <h1 class="text-6xl font-display font-semibold tracking-tighter leading-none mb-6">
+                From new authority<br>to funded.<br>
+                <span class="text-amber-400">Faster.</span>
+            </h1>
+            
+            <p class="text-xl text-slate-400 max-w-lg mb-8">
+                AuthorityMatch connects newly authorized domestic truckers with trusted factoring partners through a simple, self-serve experience.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="#for-truckers" 
+                   class="inline-flex items-center justify-center gap-x-2 bg-white text-slate-900 font-semibold px-8 py-4 rounded-3xl hover:bg-amber-100 transition-all active:scale-[0.985]">
+                    <span>Get started as a new trucker</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#for-factors" 
+                   class="inline-flex items-center justify-center gap-x-2 border border-slate-700 hover:bg-slate-900 font-medium px-8 py-4 rounded-3xl transition-all">
+                    Learn about the pilot
+                </a>
+            </div>
+            
+            <div class="mt-8 flex items-center gap-x-6 text-sm">
+                <div class="flex -space-x-2">
+                    <div class="w-7 h-7 bg-slate-700 border border-slate-600 rounded-full ring-1 ring-offset-2 ring-offset-slate-950 ring-slate-800"></div>
+                    <div class="w-7 h-7 bg-slate-700 border border-slate-600 rounded-full ring-1 ring-offset-2 ring-offset-slate-950 ring-slate-800"></div>
+                    <div class="w-7 h-7 bg-slate-700 border border-slate-600 rounded-full ring-1 ring-offset-2 ring-offset-slate-950 ring-slate-800"></div>
+                </div>
+                <div class="text-slate-400 text-sm">
+                    Trusted by factoring companies in the Jonesboro network
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Narrative / The Flow -->
+    <div id="narrative" class="bg-slate-900 border-y border-slate-800 py-16">
+        <div class="max-w-screen-xl mx-auto px-8">
+            <div class="max-w-2xl mb-10">
+                <div class="uppercase tracking-[3px] text-xs font-semibold text-amber-400 mb-3">THE WEEKLY FLOW</div>
+                <h2 class="section-header">Every week, hundreds of new domestic authorities are granted.</h2>
+                <p class="mt-3 text-lg text-slate-400">Most still find factoring the old way — through cold calls, scattered emails, and generic lists. We’re changing that.</p>
+            </div>
+
+            <!-- Narrative Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Card 1 -->
+                <div class="narrative-card bg-slate-950 border border-slate-800 rounded-3xl p-6">
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="px-3 py-1 bg-emerald-900/30 text-emerald-400 text-xs font-semibold tracking-wider rounded-2xl">THIS WEEK</div>
+                    </div>
+                    <div class="text-5xl font-display font-semibold tabular-nums mb-1">1,248</div>
+                    <div class="text-emerald-400 font-medium">New domestic USDOT authorities granted</div>
+                    <div class="mt-6 text-sm text-slate-400 leading-relaxed">
+                        Filtered to interstate property carriers. Excluding California, New York, and car haulers by default.
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="narrative-card bg-slate-950 border border-slate-800 rounded-3xl p-6">
+                    <div class="text-sm font-medium text-slate-400 mb-3">WHAT HAPPENS NEXT (WITHOUT US)</div>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex gap-x-3">
+                            <i class="fa-solid fa-envelope text-slate-500 mt-1 w-4"></i>
+                            <div>Cold emails and calls from multiple factors</div>
+                        </div>
+                        <div class="flex gap-x-3">
+                            <i class="fa-solid fa-list text-slate-500 mt-1 w-4"></i>
+                            <div>Generic lead lists with low conversion</div>
+                        </div>
+                        <div class="flex gap-x-3">
+                            <i class="fa-solid fa-clock text-slate-500 mt-1 w-4"></i>
+                            <div>Delayed cash flow while they shop around</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="narrative-card bg-slate-950 border border-slate-800 rounded-3xl p-6">
+                    <div class="text-sm font-medium text-amber-400 mb-3">WITH AUTHORITYMATCH</div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="font-semibold">Self-serve qualification</div>
+                            <div class="text-sm text-slate-400">Truckers upload docs and see instant value</div>
+                        </div>
+                        <div>
+                            <div class="font-semibold">Smart matching</div>
+                            <div class="text-sm text-slate-400">Warm introduction to vetted factoring partners</div>
+                        </div>
+                        <div>
+                            <div class="font-semibold">Faster funding</div>
+                            <div class="text-sm text-slate-400">Higher close rates for quality factors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-xs text-slate-500">* Illustrative data based on typical weekly new authority volume. Actual numbers vary.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- For Truckers -->
+    <div id="for-truckers" class="max-w-screen-xl mx-auto px-8 py-20">
+        <div class="grid md:grid-cols-12 gap-x-12 items-center">
+            <div class="md:col-span-5">
+                <div class="uppercase text-xs tracking-[2px] font-semibold text-amber-400 mb-3">FOR NEW TRUCKERS</div>
+                <h2 class="text-5xl font-display font-semibold tracking-tighter leading-none">Get funded faster.<br>Without the hassle.</h2>
+                <p class="mt-5 text-lg text-slate-400">You just got your authority. Now get the cash flow you need to keep moving — matched with factoring partners who actually want new authorities.</p>
+                
+                <div class="mt-8 space-y-4">
+                    <div class="flex gap-x-3">
+                        <i class="fa-solid fa-check text-emerald-400 mt-1.5"></i>
+                        <div><span class="font-medium">Simple self-serve process</span> — upload your authority and docs in minutes</div>
+                    </div>
+                    <div class="flex gap-x-3">
+                        <i class="fa-solid fa-check text-emerald-400 mt-1.5"></i>
+                        <div><span class="font-medium">Instant calculator</span> — see exactly what you could get on Net 30 / 60 / 90</div>
+                    </div>
+                    <div class="flex gap-x-3">
+                        <i class="fa-solid fa-check text-emerald-400 mt-1.5"></i>
+                        <div><span class="font-medium">Matched, not sold to</span> — we connect you with quality partners</div>
+                    </div>
+                </div>
+                
+                <a href="#" class="mt-8 inline-flex items-center gap-x-2 bg-white text-slate-900 font-semibold px-7 py-3.5 rounded-3xl hover:bg-amber-100 active:scale-[0.985] transition-all">
+                    Start my application <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+                <div class="text-xs text-slate-500 mt-3">Takes less than 5 minutes • No commitment</div>
+            </div>
+            
+            <div class="md:col-span-7 mt-10 md:mt-0">
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8">
+                    <div class="text-sm font-medium mb-4 text-slate-400">EXAMPLE: What a new authority sees</div>
+                    
+                    <div class="bg-slate-950 rounded-2xl p-5 border border-slate-800">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="text-emerald-400 text-sm font-medium">✓ Pre-qualified</div>
+                                <div class="font-semibold text-xl mt-1">Your profile looks strong for factoring</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-xs text-slate-500">Potential advance</div>
+                                <div class="text-3xl font-semibold tabular-nums">$8,740</div>
+                                <div class="text-xs text-emerald-400">on a $10k invoice</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 grid grid-cols-3 gap-3 text-center text-sm">
+                            <div class="bg-slate-900 rounded-2xl py-3">
+                                <div class="text-xs text-slate-400">Net 30</div>
+                                <div class="font-semibold">2.8% fee</div>
+                            </div>
+                            <div class="bg-slate-900 rounded-2xl py-3">
+                                <div class="text-xs text-slate-400">Net 60</div>
+                                <div class="font-semibold">3.4% fee</div>
+                            </div>
+                            <div class="bg-slate-900 rounded-2xl py-3">
+                                <div class="text-xs text-slate-400">Net 90</div>
+                                <div class="font-semibold">4.1% fee</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- For Factors -->
+    <div id="for-factors" class="bg-slate-900 border-y border-slate-800 py-20">
+        <div class="max-w-screen-xl mx-auto px-8">
+            <div class="max-w-2xl mb-10">
+                <div class="uppercase tracking-[3px] text-xs font-semibold text-amber-400 mb-3">FOR FACTORING COMPANIES</div>
+                <h2 class="section-header">Stop chasing new authorities.<br>Start receiving the best ones.</h2>
+                <p class="mt-4 text-lg text-slate-400">AuthorityMatch gives you a consistent flow of pre-qualified, high-intent new domestic truckers — filtered to your preferences and warmed through self-serve qualification.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
+                    <i class="fa-solid fa-filter text-2xl text-amber-400 mb-4"></i>
+                    <div class="font-semibold text-xl mb-2">Precision filtering</div>
+                    <div class="text-slate-400 text-[15px]">Set your ideal profile: fleet size, lanes, cargo type, insurance status. Only see leads that actually fit your book.</div>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
+                    <i class="fa-solid fa-handshake text-2xl text-amber-400 mb-4"></i>
+                    <div class="font-semibold text-xl mb-2">Warm, contextual leads</div>
+                    <div class="text-slate-400 text-[15px]">Every lead comes with uploaded docs, risk signals, and qualification context. No more blind outreach.</div>
+                </div>
+                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
+                    <i class="fa-solid fa-chart-line text-2xl text-amber-400 mb-4"></i>
+                    <div class="font-semibold text-xl mb-2">Measurable pipeline</div>
+                    <div class="text-slate-400 text-[15px]">See exactly how many new authorities are entering your market and your close rate on them.</div>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-slate-950 border border-slate-800 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-y-6">
+                <div>
+                    <div class="font-semibold">Ready to pilot?</div>
+                    <div class="text-slate-400 mt-1">We’re building the first cohort with the Jonesboro Factoring Network.</div>
+                </div>
+                <a href="#" class="px-8 py-3 bg-white text-slate-900 font-semibold rounded-3xl whitespace-nowrap hover:bg-amber-100 transition-colors">Request pilot access</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Network -->
+    <div id="network" class="max-w-screen-xl mx-auto px-8 py-20">
+        <div class="text-center max-w-lg mx-auto mb-12">
+            <div class="uppercase tracking-[3px] text-xs font-semibold text-amber-400 mb-3">POWERED BY LOCAL EXPERTISE</div>
+            <h2 class="text-4xl font-display font-semibold tracking-tight">Built with the Jonesboro Factoring Network</h2>
+            <p class="mt-3 text-slate-400">AuthorityMatch was developed in close collaboration with established factoring companies who know the trucking industry inside and out.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="border border-slate-800 rounded-3xl p-6">
+                <div class="font-semibold">Sunbelt Finance</div>
+                <div class="text-sm text-slate-400 mt-1">Mickey Seeman • Est. 1995</div>
+                <div class="text-xs mt-4 text-slate-500">Long-standing leader in trucking factoring with deep expertise in new authority support.</div>
+            </div>
+            <div class="border border-slate-800 rounded-3xl p-6">
+                <div class="font-semibold">Century Finance</div>
+                <div class="text-sm text-slate-400 mt-1">Jared Seeman</div>
+                <div class="text-xs mt-4 text-slate-500">Fast, trucker-focused factoring with strong emphasis on speed and service.</div>
+            </div>
+            <div class="border border-slate-800 rounded-3xl p-6">
+                <div class="font-semibold">Freight Funding</div>
+                <div class="text-sm text-slate-400 mt-1">Ragsdale Family</div>
+                <div class="text-xs mt-4 text-slate-500">Providing reliable invoice factoring solutions to the transportation community.</div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8 text-xs text-slate-500">
+            These companies operate independently. AuthorityMatch serves as a neutral acquisition layer that benefits the entire network.
+        </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="border-t border-slate-800 bg-slate-900">
+        <div class="max-w-screen-xl mx-auto px-8 py-14 text-center">
+            <h3 class="text-3xl font-semibold tracking-tight">Ready to improve how new authorities find you?</h3>
+            <p class="mt-3 text-slate-400 max-w-md mx-auto">Whether you're a new trucker or a factoring company looking for better new authority flow, we'd love to talk.</p>
+            
+            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+                <a href="#for-truckers" class="px-8 py-3.5 bg-white text-slate-900 font-semibold rounded-3xl">I'm a new trucker</a>
+                <a href="#for-factors" class="px-8 py-3.5 border border-slate-700 hover:bg-slate-800 font-medium rounded-3xl">I'm a factoring company</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-t border-slate-800 py-8 text-xs text-slate-500">
+        <div class="max-w-screen-xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-y-3">
+            <div>© AuthorityMatch. A project by Lee Quessenberry.</div>
+            <div class="flex gap-x-5">
+                <a href="#" class="hover:text-slate-300">Privacy</a>
+                <a href="#" class="hover:text-slate-300">For Factors</a>
+                <a href="#" class="hover:text-slate-300">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        console.log('%c[AuthorityMatch] Public site prototype loaded', 'color:#64748b');
+    </script>
+</body>
+</html>
