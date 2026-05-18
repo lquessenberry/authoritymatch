@@ -1,0 +1,140 @@
+name: Ingest FMCSA CSV Data
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      state:
+        description: 'State filter (e.g., AR for Arkansas)'
+        required: false
+        default: ''
+      since:
+        description: 'Since date (YYYY-MM-DD)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry run only (do not load to Drupal)'
+        type: boolean
+        required: false
+        default: false
+      csv_url:
+        description: 'Custom CSV URL (optional)'
+        required: false
+        default: ''
+  
+  # Scheduled - runs daily at 6 AM UTC
+  schedule:
+    - cron: '0 6 * * *'
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '9'
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    name: Ingest FMCSA Authorities
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Download FMCSA CSV
+        id: download
+        run: |
+          mkdir -p data
+          
+          # If custom URL provided, use it
+          if [ -n "${{ github.event.inputs.csv_url }}" ]; then
+            echo "Downloading from custom URL..."
+            curl -L -o data/fmcsa_export.csv "${{ github.event.inputs.csv_url }}"
+          else
+            # Download latest FMCSA carrier census
+            # Note: This is a placeholder - replace with actual FMCSA bulk data URL
+            echo "Downloading FMCSA Carrier Census..."
+            curl -L -o data/fmcsa_census.zip "https://www.fmcsa.dot.gov/sites/fmcsa.dot.gov/files/2024-05/FMCSA_Carrier_Census.zip" || true
+            
+            # Extract if it's a zip
+            if [ -f data/fmcsa_census.zip ]; then
+              unzip -o data/fmcsa_census.zip -d data/
+              mv data/*.csv data/fmcsa_export.csv 2>/dev/null || true
+            fi
+          fi
+          
+          # Check if we got a CSV
+          if [ ! -f data/fmcsa_export.csv ]; then
+            echo "❌ No CSV file found"
+            exit 1
+          fi
+          
+          echo "✅ CSV downloaded"
+          wc -l data/fmcsa_export.csv
+
+      - name: Build data pipeline
+        run: pnpm --filter @authoritymatch/data-pipeline build
+
+      - name: Run CSV ingestion
+        id: ingest
+        run: |
+          cd packages/data-pipeline
+          
+          # Build command arguments
+          CMD="node dist/scripts/ingest-csv.js -f ../../data/fmcsa_export.csv"
+          
+          # Add state filter if provided
+          if [ -n "${{ github.event.inputs.state }}" ]; then
+            CMD="$CMD -s ${{ github.event.inputs.state }}"
+          fi
+          
+          # Add since date if provided
+          if [ -n "${{ github.event.inputs.since }}" ]; then
+            CMD="$CMD -d ${{ github.event.inputs.since }}"
+          fi
+          
+          # Add dry run if enabled
+          if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
+            CMD="$CMD --dry-run -o ../../data/ingest_results.json"
+          fi
+          
+          echo "Running: $CMD"
+          eval $CMD
+
+      - name: Upload results (dry run)
+        if: github.event.inputs.dry_run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ingest-results
+          path: data/ingest_results.json
+          retention-days: 7
+
+      - name: Commit results summary
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          echo "## Ingestion Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Date**: $(date -u +"%Y-%m-%d %H:%M UTC")" >> $GITHUB_STEP_SUMMARY
+          echo "- **State Filter**: ${{ github.event.inputs.state || 'All' }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Since**: ${{ github.event.inputs.since || 'All time' }}" >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify on failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "❌ FMCSA CSV ingestion failed: ${{ github.workflow }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
