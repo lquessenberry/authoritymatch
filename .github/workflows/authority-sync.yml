@@ -1,0 +1,182 @@
+name: Authority Database Sync
+
+on:
+  # Daily incremental sync at 6 AM UTC
+  schedule:
+    - cron: '0 6 * * *'
+  
+  # Weekly full sync Sunday at 2 AM UTC
+  - cron: '0 2 * * 0'
+  
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      sync_type:
+        description: 'Sync type'
+        type: choice
+        options:
+          - incremental
+          - full
+          - scheduled
+        default: 'scheduled'
+      csv_url:
+        description: 'FMCSA CSV URL (for full sync)'
+        required: false
+        default: ''
+      state_filter:
+        description: 'State filter (e.g., AR)'
+        required: false
+        default: ''
+
+env:
+  FLY_APP_NAME: authoritymatch-pipeline
+  DRUPAL_URL: ${{ secrets.DRUPAL_PROD_URL }}
+  FMCSA_API_KEY: ${{ secrets.FMCSA_API_KEY }}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    name: Sync FMCSA Authorities
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Fly CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Determine sync type
+        id: sync_type
+        run: |
+          # Check if triggered by Sunday 2 AM cron (full sync)
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            # Sunday at 2 AM = full sync
+            HOUR=$(date -u +%H)
+            DAY=$(date -u +%w)
+            if [ "$HOUR" == "02" ] && [ "$DAY" == "0" ]; then
+              echo "type=full" >> $GITHUB_OUTPUT
+              echo "📅 Full sync scheduled (Sunday 2AM)"
+            else
+              echo "type=incremental" >> $GITHUB_OUTPUT
+              echo "📅 Incremental sync scheduled"
+            fi
+          else
+            echo "type=${{ github.event.inputs.sync_type || 'scheduled' }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Deploy Pipeline VM
+        run: |
+          cd infra/fly/pipeline
+          
+          # Set environment variables based on sync type
+          if [ "${{ steps.sync_type.outputs.type }}" == "full" ]; then
+            flyctl deploy --app ${{ env.FLY_APP_NAME }} \
+              --env SYNC_TYPE=full \
+              --env STATE_FILTER=${{ github.event.inputs.state_filter || 'AR' }} \
+              --vm-size performance-4x \
+              --wait-timeout=900
+          else
+            flyctl deploy --app ${{ env.FLY_APP_NAME }} \
+              --env SYNC_TYPE=incremental \
+              --env STATE_FILTER=${{ github.event.inputs.state_filter || '' }} \
+              --vm-size performance-2x \
+              --wait-timeout=600
+          fi
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Run Sync on Fly.io
+        run: |
+          echo "🚀 Running ${{ steps.sync_type.outputs.type }} sync on Fly.io..."
+          
+          # For full sync, download CSV first
+          if [ "${{ steps.sync_type.outputs.type }}" == "full" ] && [ -n "${{ github.event.inputs.csv_url }}" ]; then
+            flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+              --command "curl -L -o /data/fmcsa.csv '${{ github.event.inputs.csv_url }}' && ls -lh /data/fmcsa.csv"
+          fi
+          
+          # Run the sync
+          flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+            --command "cd /app && \
+              DRUPAL_URL=${{ env.DRUPAL_URL }} \
+              FMCSA_API_KEY=${{ env.FMCSA_API_KEY }} \
+              OAUTH_CLIENT_ID=${{ secrets.DRUPAL_OAUTH_CLIENT_ID }} \
+              OAUTH_CLIENT_SECRET=${{ secrets.DRUPAL_OAUTH_CLIENT_SECRET }} \
+              node packages/data-pipeline/dist/sync-engine.js ${{ steps.sync_type.outputs.type }} 2>&1 | tee /data/sync.log"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Monitor Progress
+        run: |
+          echo "📊 Monitoring sync progress..."
+          for i in {1..60}; do
+            sleep 30
+            STATUS=$(flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+              --command "cat /data/sync-state.json 2>/dev/null | jq -r '.lastIncrementalSync // \"running\"'" 2>/dev/null || echo "running")
+            
+            if [ "$STATUS" != "running" ]; then
+              echo "✅ Sync completed!"
+              break
+            fi
+            
+            echo "⏳ Still running... ($i/60)"
+          done
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Get Results
+        run: |
+          echo "📥 Fetching sync results..."
+          flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+            --command "cat /data/sync-state.json | jq ."
+          
+          echo ""
+          echo "📋 Sync log (last 50 lines):"
+          flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+            --command "tail -50 /data/sync.log"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Upload Results to S3
+        if: secrets.AWS_ACCESS_KEY_ID != ''
+        run: |
+          echo "☁️ Uploading sync results to S3..."
+          flyctl ssh console --app ${{ env.FLY_APP_NAME }} \
+            --command "
+              aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} &&
+              aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} &&
+              aws configure set region ${{ secrets.AWS_REGION || 'us-east-1' }} &&
+              aws s3 cp /data/sync-state.json s3://${{ secrets.S3_BUCKET }}/sync/$(date +%Y%m%d)/sync-state.json &&
+              aws s3 cp /data/sync.log s3://${{ secrets.S3_BUCKET }}/sync/$(date +%Y%m%d)/sync.log &&
+              aws s3 sync /data/batch_*.json s3://${{ secrets.S3_BUCKET }}/batches/$(date +%Y%m%d)/
+            "
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Cleanup
+        if: always()
+        run: |
+          echo "🧹 Scaling down to save costs..."
+          flyctl scale count 0 --app ${{ env.FLY_APP_NAME }} || true
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Notify Slack
+        if: always()
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "text": "Authority Sync ${{ job.status }} - ${{ steps.sync_type.outputs.type }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "*Authority Database Sync*\nType: ${{ steps.sync_type.outputs.type }}\nStatus: ${{ job.status }}\n<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Run>"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
