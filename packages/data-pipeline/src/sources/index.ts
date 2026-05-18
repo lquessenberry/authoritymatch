@@ -1,2 +1,3 @@
-// Data sources
-export * from './fmcsa';
+// Data sources - CSV first, then API
+export * from "./csv";
+export * from "./fmcsa";
