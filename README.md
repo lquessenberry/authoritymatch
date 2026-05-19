@@ -2,7 +2,7 @@
 
 Connecting newly authorized domestic truckers with trusted factoring partners.
 
-**Live Demo**: <https://lquessenberry.github.io/authoritymatch/> (static placeholder)  
+**Live Demo**: <https://lquessenberry.github.io/authoritymatch/> (deployed from `/docs/site`)  
 **Stack**: Drupal 11 + GraphQL | Next.js 15 + TypeScript | Fly.io
 
 ---
