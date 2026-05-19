@@ -33,6 +33,7 @@ install:
 config:
   import:
     node:
+      # --- Authority Record (FMCSA trucker profile) ---
       - field.field.node.authority_record.field_mc_number
       - field.field.node.authority_record.field_dot_number
       - field.field.node.authority_record.field_company_name
@@ -46,11 +47,36 @@ config:
       - field.field.node.authority_record.field_safety_rating
       - field.field.node.authority_record.field_location
       - node.type.authority_record
+      # --- Lead (trucker inquiry / match request) ---
+      - field.field.node.lead.field_authority_record
+      - field.field.node.lead.field_requesting_factor
+      - field.field.node.lead.field_lead_status
+      - field.field.node.lead.field_lead_source
+      - field.field.node.lead.field_match_score
+      - field.field.node.lead.field_submitted_at
+      - field.field.node.lead.field_notes
+      - node.type.lead
+      # --- Factor Profile (factoring company) ---
+      - field.field.node.factor_profile.field_company_name
+      - field.field.node.factor_profile.field_contact_email
+      - field.field.node.factor_profile.field_contact_phone
+      - field.field.node.factor_profile.field_risk_appetite
+      - field.field.node.factor_profile.field_advance_rate_min
+      - field.field.node.factor_profile.field_advance_rate_max
+      - field.field.node.factor_profile.field_min_monthly_volume
+      - field.field.node.factor_profile.field_max_monthly_volume
+      - field.field.node.factor_profile.field_equipment_types_accepted
+      - field.field.node.factor_profile.field_states_served
+      - field.field.node.factor_profile.field_subscription_tier
+      - field.field.node.factor_profile.field_is_active
+      - node.type.factor_profile
     taxonomy:
       - taxonomy.vocabulary.equipment_types
       - taxonomy.vocabulary.factoring_status
       - taxonomy.vocabulary.credit_tiers
       - taxonomy.vocabulary.volume_ranges
+      - taxonomy.vocabulary.lead_status
+      - taxonomy.vocabulary.risk_appetite
   actions:
     # Set up user roles
     user.role.trucker:
@@ -68,3 +94,8 @@ config:
         id: network_admin
         label: 'Network Admin'
         weight: 5
+    user.role.super_admin:
+      ensure_exists:
+        id: super_admin
+        label: 'Super Admin'
+        weight: 6

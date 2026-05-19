@@ -7,7 +7,6 @@ No DDEV overhead, just pure Docker. Much lighter on your laptop.
 
 ```bash
 # Start everything
-cd /home/lquessenberry/CascadeProjects/authmatch/authoritymatch
 ./start-local.sh
 
 # Access:
