@@ -1,0 +1,452 @@
+[
+  {
+    "dotNumber": "168450",
+    "legalName": "",
+    "dbaName": "",
+    "state": "AR",
+    "status": "I",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "",
+      "city": "EXEMPT FOR HIRE",
+      "state": "AR",
+      "zip": "72712"
+    },
+    "mailingAddress": {
+      "street": "RT 1 BOX 400",
+      "city": "AR",
+      "state": "BENTONVILLE",
+      "zip": "US"
+    },
+    "phone": "",
+    "fax": "",
+    "email": "",
+    "mcs150Date": "",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 0,
+    "rawData": {
+      "censusLine": ",\"19740601\",\"I\",\"168450\",,\"06\",\"L\",\"A\",\"1\",\"0\",,\"0\",,\"3\",,,,,,,,\"INDIVIDUAL\",\"0\",\"0\",\"0\",\"0\",,,,,,,\"C\",,,,,,,,\"0\",,,\"N\",,,,,,,,\"EXEMPT FOR HIRE\",\"H E FULLER\",,\"RT 1 BOX 400\",\"BENTONVILLE\",\"US\",\"AR\",\"72712\",\"007\",\"RT 1 BOX 400\",\"AR\",\"BENTONVILLE\",\"US\",\"72712\",\"007\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.476Z",
+    "updatedAt": "2026-05-18T23:16:14.477Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 0,
+      "statusCode": "I",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:19.136Z"
+    }
+  },
+  {
+    "dotNumber": "168802",
+    "legalName": "",
+    "dbaName": "",
+    "state": "AR",
+    "status": "I",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "",
+      "city": "EXEMPT FOR HIRE",
+      "state": "AR",
+      "zip": "72653"
+    },
+    "mailingAddress": {
+      "street": "RT 2 BOX 59A",
+      "city": "AR",
+      "state": "MOUNTAIN HOME",
+      "zip": "US"
+    },
+    "phone": "",
+    "fax": "",
+    "email": "",
+    "mcs150Date": "",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 0,
+    "rawData": {
+      "censusLine": ",\"19740601\",\"I\",\"168802\",,\"06\",\"L\",\"A\",\"1\",\"0\",,\"0\",,\"3\",,,,,,,,\"INDIVIDUAL\",\"0\",\"0\",\"0\",\"0\",,,,,,,\"C\",,,,,,,,\"0\",\"99\",\"20141027\",\"N\",,,,,,,,\"EXEMPT FOR HIRE\",\"LAVERN M JOHNSON\",,\"RT 2 BOX 59A\",\"MOUNTAIN HOME\",\"US\",\"AR\",\"72653\",\"005\",\"RT 2 BOX 59A\",\"AR\",\"MOUNTAIN HOME\",\"US\",\"72653\",\"005\",\"20040211\",,,,,,,\"U\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.479Z",
+    "updatedAt": "2026-05-18T23:16:14.479Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 0,
+      "statusCode": "I",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:19.401Z"
+    }
+  },
+  {
+    "dotNumber": "168868",
+    "legalName": "5013275925",
+    "dbaName": "",
+    "state": "AR",
+    "status": "A",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "0",
+      "city": "PRIVATE PROPERTY",
+      "state": "AR",
+      "zip": "72032"
+    },
+    "mailingAddress": {
+      "street": "P O BOX 847",
+      "city": "AR",
+      "state": "CONWAY",
+      "zip": "US"
+    },
+    "phone": "5013277860",
+    "fax": "5013275925",
+    "email": "",
+    "mcs150Date": "20240919 1543",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 172,
+    "rawData": {
+      "censusLine": "\"20240919 1543\",\"19740601\",\"A\",\"168868\",\"67667055\",\"06\",\"L\",\"A\",\"3\",\"1956000\",\"2023\",,,\"1\",\"N\",,\"5013277860\",\"5013275925\",,\"EUGENE KLAASMEYER\",,\"CORPORATION\",\"172\",\"172\",\"0\",\"Q\",,,,,,,\"C\",,,,,,,,\"0\",,,\"N\",\"32\",\"114\",,,\"38\",\"146\",\"0\",\"PRIVATE PROPERTY\",\"KLAASMEYER CONSTRUCTION CO INC\",,\"35 MIDDLE RD\",\"CONWAY\",\"US\",\"AR\",\"72032\",\"045\",\"P O BOX 847\",\"AR\",\"CONWAY\",\"US\",\"72033-0847\",\"045\",,\"146\",\"gary@klaasmeyer.com\",\"C\",\"20110125\",\"S\",\"20110915\",,,,,,,,,,\"X\",,,,,,,,,,,,,,,,,,,,,\"X\",\"DIRT, GRAVEL, PIPE\",\"164\",\"8\",\"9\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.481Z",
+    "updatedAt": "2026-05-18T23:16:14.481Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "5013275925",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 172,
+      "statusCode": "A",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:19.660Z"
+    }
+  },
+  {
+    "dotNumber": "169023",
+    "legalName": "",
+    "dbaName": "",
+    "state": "AR",
+    "status": "I",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "",
+      "city": "EXEMPT FOR HIRE",
+      "state": "AR",
+      "zip": "72761"
+    },
+    "mailingAddress": {
+      "street": "PO BOX 823",
+      "city": "AR",
+      "state": "SILOAM SPRINGS",
+      "zip": "US"
+    },
+    "phone": "",
+    "fax": "",
+    "email": "",
+    "mcs150Date": "",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 0,
+    "rawData": {
+      "censusLine": ",\"19740601\",\"I\",\"169023\",,\"06\",\"L\",\"A\",\"1\",\"0\",,\"0\",,\"3\",,,,,,,,\"INDIVIDUAL\",\"0\",\"0\",\"0\",\"0\",,,,,,,\"C\",,,,,,,,\"0\",,,\"N\",,,,,,,,\"EXEMPT FOR HIRE\",\"DANIEL E LUNEY SR\",,\"PO BOX 823\",\"SILOAM SPRINGS\",\"US\",\"AR\",\"72761\",\"007\",\"PO BOX 823\",\"AR\",\"SILOAM SPRINGS\",\"US\",\"72761\",\"007\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.481Z",
+    "updatedAt": "2026-05-18T23:16:14.481Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 0,
+      "statusCode": "I",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:19.909Z"
+    }
+  },
+  {
+    "dotNumber": "169026",
+    "legalName": "",
+    "dbaName": "",
+    "state": "AR",
+    "status": "I",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "",
+      "city": "PRIVATE PROPERTY",
+      "state": "AR",
+      "zip": "72479"
+    },
+    "mailingAddress": {
+      "street": "PO BOX 221",
+      "city": "AR",
+      "state": "WEINER",
+      "zip": "US"
+    },
+    "phone": "",
+    "fax": "",
+    "email": "",
+    "mcs150Date": "",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 0,
+    "rawData": {
+      "censusLine": ",\"19740601\",\"I\",\"169026\",,\"06\",\"L\",\"A\",\"1\",\"0\",,\"0\",,\"3\",,,,,,,,\"INDIVIDUAL\",\"0\",\"0\",\"0\",\"0\",,,,,,,\"C\",,,,,,,,\"0\",,,\"N\",,,,,,,,\"PRIVATE PROPERTY\",\"CLINT L LYNN\",,\"PO BOX 221\",\"WEINER\",\"US\",\"AR\",\"72479\",\"111\",\"PO BOX 221\",\"AR\",\"WEINER\",\"US\",\"72479\",\"111\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.481Z",
+    "updatedAt": "2026-05-18T23:16:14.481Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 0,
+      "statusCode": "I",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:20.160Z"
+    }
+  },
+  {
+    "dotNumber": "169038",
+    "legalName": "",
+    "dbaName": "",
+    "state": "AR",
+    "status": "I",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "0",
+      "city": "PRIVATE PROPERTY",
+      "state": "AR",
+      "zip": "72204-6402"
+    },
+    "mailingAddress": {
+      "street": "3300 S ELM ST",
+      "city": "AR",
+      "state": "LITTLE ROCK",
+      "zip": "US"
+    },
+    "phone": "5016645550",
+    "fax": "",
+    "email": "",
+    "mcs150Date": "20010824 0000",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 8,
+    "rawData": {
+      "censusLine": "\"20010824 0000\",\"19740601\",\"I\",\"169038\",\"51378446\",\"06\",\"L\",\"A\",\"3\",\"0\",,\"0\",,\"2\",,,\"5016645550\",,,,,\"CORPORATION\",\"8\",\"8\",\"0\",\"D\",,,,,,,\"C\",,,,,,,,\"0\",,,\"N\",\"7\",\"0\",\"0\",\"0\",\"0\",\"7\",\"0\",\"PRIVATE PROPERTY\",\"M & P EQUIPMENT CO\",,\"3300 S ELM ST\",\"LITTLE ROCK\",\"US\",\"AR\",\"72204-6402\",\"119\",\"3300 S ELM ST\",\"AR\",\"LITTLE ROCK\",\"US\",\"72204-6402\",\"119\",\"20031002\",,,\"U\",\"19810824\",,,\"U\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\"4\",\"4\",\"4\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.481Z",
+    "updatedAt": "2026-05-18T23:16:14.481Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 8,
+      "statusCode": "I",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:20.420Z"
+    }
+  },
+  {
+    "dotNumber": "169051",
+    "legalName": "",
+    "dbaName": "",
+    "state": "AR",
+    "status": "I",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "0",
+      "city": "OTHER-UNKNOWN",
+      "state": "AR",
+      "zip": "72058"
+    },
+    "mailingAddress": {
+      "street": "613 W REPUBLICAN RD",
+      "city": "AR",
+      "state": "GREENBRIAR",
+      "zip": "US"
+    },
+    "phone": "5016795959",
+    "fax": "",
+    "email": "",
+    "mcs150Date": "",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 1,
+    "rawData": {
+      "censusLine": ",\"19740601\",\"I\",\"169051\",,\"06\",\"L\",\"A\",\"2\",\"0\",,\"50000\",,\"3\",,,\"5016795959\",,,,,\"PARTNERSHIP\",\"1\",\"1\",\"0\",\"A\",,,,,,,\"C\",\"MC\",\"278568\",,,,,,\"0\",,,\"N\",\"1\",\"1\",\"0\",\"0\",\"0\",\"2\",\"0\",\"OTHER-UNKNOWN\",\"DANNY & KATHY MALLETT\",\"D & K FARMS\",\"613 W REPUBLICAN RD\",\"GREENBRIAR\",\"US\",\"AR\",\"72058\",\"045\",\"613 W REPUBLICAN RD\",\"AR\",\"GREENBRIAR\",\"US\",\"72058\",\"045\",,,,\"S\",\"19881013\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\"RUBBER CHIPS\",,\"1\",\"1\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\"A\",,"
+    },
+    "createdAt": "2026-05-18T23:16:14.481Z",
+    "updatedAt": "2026-05-18T23:16:14.481Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 1,
+      "statusCode": "I",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:20.678Z"
+    }
+  },
+  {
+    "dotNumber": "169094",
+    "legalName": "",
+    "dbaName": "",
+    "state": "AR",
+    "status": "I",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "0",
+      "city": "EXEMPT FOR HIRE",
+      "state": "AR",
+      "zip": "72301"
+    },
+    "mailingAddress": {
+      "street": "602 AUBURN AVE",
+      "city": "AR",
+      "state": "WEST MEMPHIS",
+      "zip": "US"
+    },
+    "phone": "5017358132",
+    "fax": "",
+    "email": "",
+    "mcs150Date": "",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 1,
+    "rawData": {
+      "censusLine": ",\"19740601\",\"I\",\"169094\",\"21945738\",\"06\",\"L\",\"A\",\"1\",\"0\",,\"93228\",,\"3\",,,\"5017358132\",,,,,\"INDIVIDUAL\",\"1\",\"1\",\"0\",\"A\",,,,,,,\"C\",,,,,,,,\"0\",,,\"N\",\"1\",\"0\",\"0\",\"0\",\"1\",\"1\",\"0\",\"EXEMPT FOR HIRE\",\"MCCLELLAN EARL\",,\"602 AUBURN AVE\",\"WEST MEMPHIS\",\"US\",\"AR\",\"72301\",\"035\",\"602 AUBURN AVE\",\"AR\",\"WEST MEMPHIS\",\"US\",\"72301\",\"035\",,,,\"C\",\"19920909\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\"1\",\"1\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.482Z",
+    "updatedAt": "2026-05-18T23:16:14.482Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 1,
+      "statusCode": "I",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:20.937Z"
+    }
+  },
+  {
+    "dotNumber": "169121",
+    "legalName": "",
+    "dbaName": "",
+    "state": "AR",
+    "status": "I",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "",
+      "city": "EXEMPT FOR HIRE",
+      "state": "AR",
+      "zip": "72040"
+    },
+    "mailingAddress": {
+      "street": "PO BOX 8",
+      "city": "AR",
+      "state": "DES ARC",
+      "zip": "US"
+    },
+    "phone": "",
+    "fax": "",
+    "email": "",
+    "mcs150Date": "",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 0,
+    "rawData": {
+      "censusLine": ",\"19740601\",\"I\",\"169121\",,\"06\",\"L\",\"A\",\"1\",\"0\",,\"0\",,\"3\",,,,,,,,\"INDIVIDUAL\",\"0\",\"0\",\"0\",\"0\",,,,,,,\"C\",,,,,,,,\"0\",,,\"N\",,,,,,,,\"EXEMPT FOR HIRE\",\"FRANKLIN MCVEY\",,\"PO BOX 8\",\"DES ARC\",\"US\",\"AR\",\"72040\",\"117\",\"PO BOX 8\",\"AR\",\"DES ARC\",\"US\",\"72040\",\"117\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.482Z",
+    "updatedAt": "2026-05-18T23:16:14.482Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "",
+      "dbaName": "",
+      "totalDrivers": 0,
+      "totalPowerUnits": 0,
+      "statusCode": "I",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:21.197Z"
+    }
+  },
+  {
+    "dotNumber": "169193",
+    "legalName": "5017234623",
+    "dbaName": "5012535515",
+    "state": "AR",
+    "status": "A",
+    "carrierOperation": "A",
+    "physicalAddress": {
+      "street": "0",
+      "city": "PRIVATE PROPERTY",
+      "state": "AR",
+      "zip": "72153"
+    },
+    "mailingAddress": {
+      "street": "150 SANDIFF RD",
+      "city": "AR",
+      "state": "SHIRLEY",
+      "zip": "US"
+    },
+    "phone": "5012065010",
+    "fax": "5017234623",
+    "email": "",
+    "mcs150Date": "20250318 0000",
+    "addDate": "19740601",
+    "safetyRating": "",
+    "insuranceStatus": "",
+    "totalDrivers": 0,
+    "totalPowerUnits": 1,
+    "rawData": {
+      "censusLine": "\"20250318 0000\",\"19740601\",\"A\",\"169193\",\"103661716\",\"06\",\"L\",\"A\",\"1\",\"2000\",\"2024\",,,\"3\",,,\"5012065010\",\"5017234623\",\"5012535515\",\"LARRY NEAL MOODY\",,\"INDIVIDUAL\",\"1\",\"1\",\"0\",\"A\",,,,,,,\"C\",,,,,,,,\"0\",\"0\",\"20160726\",\"N\",\"0\",\"1\",,,\"0\",\"1\",\"0\",\"PRIVATE PROPERTY\",\"MOODY FARMS INC\",,\"150 SANDIFF RD\",\"SHIRLEY\",\"US\",\"AR\",\"72153\",\"141\",\"150 SANDIFF RD\",\"AR\",\"SHIRLEY\",\"US\",\"72153\",\"141\",,\"1\",\"Tammy69.tb@gmail.com\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\"X\",,,,,\"1\",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+    },
+    "createdAt": "2026-05-18T23:16:14.483Z",
+    "updatedAt": "2026-05-18T23:16:14.483Z",
+    "source": "FMCSA_CENSUS_20260518",
+    "apiEnriched": true,
+    "apiData": {
+      "legalName": "5017234623",
+      "dbaName": "5012535515",
+      "totalDrivers": 0,
+      "totalPowerUnits": 1,
+      "statusCode": "A",
+      "safetyRating": "",
+      "fetchedAt": "2026-05-19T13:58:21.446Z"
+    }
+  }
+]
