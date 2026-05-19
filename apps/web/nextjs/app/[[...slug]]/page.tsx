@@ -6,7 +6,7 @@ import NodePageComponent from "@/components/node/NodePage";
 import NodeLandingComponent from "@/components/node/NodeLanding";
 
 // Enable dynamic rendering for specific paths that need headers
-export const dynamic = 'auto';
+export const dynamic = 'force-dynamic';
 // Enable static rendering with revalidation for other paths
 export const revalidate = 3600;
 
@@ -65,7 +65,7 @@ import { ParagraphUnionFragment } from "@/graphql/fragments/paragraph";
 import { ParagraphViewFragment } from "@/components/paragraphs/ParagraphView";
 import { TermUnionFragment, TermAuthorFragment, TermTagFragment } from "@/graphql/fragments/term";
 import { UserFragment } from "@/graphql/fragments/user";
-import { getClientWithAuth } from "@/utils/client.server";
+import { getClientWithAuth, hasDrupalConfig } from "@/utils/client.server";
 import { calculatePath, frontpagePath } from "@/utils/routes";
 
 interface NodeType {
@@ -93,6 +93,10 @@ const staticTypes = ['nodePages', 'nodeArticles', 'nodeLandings'];
  * @returns Promise<string[]> Array of paths.
  */
 async function getAllPaths(): Promise<string[]> {
+  if (!hasDrupalConfig()) {
+    return [];
+  }
+
   const client = await getClientWithAuth();
 
   const allPathsQuery = /* GraphQL */ `
@@ -126,6 +130,10 @@ async function getAllPaths(): Promise<string[]> {
  * @returns Promise<{ slug: string[] }[]> Array of slug parameters for static generation.
  */
 export async function generateStaticParams(): Promise<{ slug: string[] }[]> {
+  if (!hasDrupalConfig()) {
+    return [];
+  }
+
   const paths = await getAllPaths();
   return paths.map((path: string) => ({
     slug: path.split('/').filter(segment => segment !== ''),

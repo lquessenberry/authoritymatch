@@ -1,38 +1,49 @@
-import { Open_Sans } from "next/font/google";
 import Container from "@/components/Container";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { MainMenuQuery, FooterMenuQuery } from "@/graphql/queries";
-import { getClientWithAuth } from "@/utils/client.server";
+import { getClientWithAuth, hasDrupalConfig } from "@/utils/client.server";
+import type { ComponentProps } from "react";
 import getConfig from 'next/config';
 
 import './globals.css'
 
-const font = Open_Sans({ subsets: ["latin"] });
 const { publicRuntimeConfig } = getConfig();
+
+type HeaderMenu = NonNullable<ComponentProps<typeof Header>['mainMenu']>
+type FooterMenu = NonNullable<ComponentProps<typeof Footer>['footerMenu']>
+type HeaderQueryData = { menu?: HeaderMenu | null }
+type FooterQueryData = { menu?: FooterMenu | null }
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const client = await getClientWithAuth();
+  let menuData: HeaderQueryData | null = null
+  let footerData: FooterQueryData | null = null
 
-  const { data: menuData, error: menuError } = await client.query(MainMenuQuery, {});
+  if (hasDrupalConfig()) {
+    const client = await getClientWithAuth();
 
-  if (menuError) {
-    throw menuError;
-  }
+    const { data: queriedMenuData, error: menuError } = await client.query(MainMenuQuery, {});
 
-  const { data: footerData, error: footerError } = await client.query(FooterMenuQuery, {});
+    if (menuError) {
+      throw menuError;
+    }
+    menuData = queriedMenuData
 
-  if (footerError) {
-    throw footerError;
+    const { data: queriedFooterData, error: footerError } = await client.query(FooterMenuQuery, {});
+
+    if (footerError) {
+      throw footerError;
+    }
+    footerData = queriedFooterData
   }
 
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body>
         <Container>
           <Header
             mainMenu={menuData?.menu || null}
