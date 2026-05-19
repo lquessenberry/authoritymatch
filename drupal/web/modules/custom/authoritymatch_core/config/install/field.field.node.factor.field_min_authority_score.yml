@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_min_authority_score
+    - node.type.factor
+id: node.factor.field_min_authority_score
+field_name: field_min_authority_score
+entity_type: node
+bundle: factor
+label: 'Minimum Authority Score'
+description: 'Minimum overall score required (0-100)'
+required: true
+translatable: false
+default_value:
+  -
+    value: 60
+default_value_callback: ''
+settings:
+  min: 0
+  max: 100
+  prefix: ''
+  suffix: ''
+field_type: integer

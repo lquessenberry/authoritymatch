@@ -1,0 +1,47 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - authoritymatch_core
+id: factors
+label: 'Import Pilot Factoring Companies'
+source:
+  plugin: factor_json_source
+  file_path: /data/factors.json
+process:
+  title: company_name
+  field_company_name: company_name
+  field_legal_name: legal_name
+  field_status: status
+  field_verification_status: verification_status
+  field_tax_id: tax_id
+  field_contact_email: contact_email
+  field_contact_phone: contact_phone
+  field_contact_website: contact_website
+  field_address:
+    plugin: address_field
+    source:
+      - address_street
+      - address_city
+      - address_state
+      - address_zip
+    country_code: US
+    langcode: en
+  field_preferred_states: preferred_states
+  field_min_fleet_size: min_fleet_size
+  field_max_fleet_size: max_fleet_size
+  field_min_authority_score: min_score
+  field_risk_tolerance: risk_tolerance
+  field_advance_rates:
+    plugin: skip_on_empty
+    method: process
+    source: advance_rates
+  field_base_fee: base_fee
+  field_total_clients: total_clients
+destination:
+  plugin: 'entity:node'
+  default_bundle: factor
+migration_dependencies:
+  required: []
+  optional: []

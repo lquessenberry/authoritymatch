@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_company_name
+    - node.type.factor
+id: node.factor.field_company_name
+field_name: field_company_name
+entity_type: node
+bundle: factor
+label: 'Company Name'
+description: 'Display name for the factoring company'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
