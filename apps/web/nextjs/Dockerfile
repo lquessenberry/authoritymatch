@@ -1,5 +1,6 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
+ENV CYPRESS_INSTALL_BINARY=0
 COPY apps/web/nextjs/package.json apps/web/nextjs/package-lock.json ./
 RUN npm ci
 

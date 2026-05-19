@@ -34,4 +34,12 @@ const DRUPAL_CONFIG = {
   },
 };
 
+export const hasDrupalConfig = () =>
+  Boolean(
+    process.env.DRUPAL_GRAPHQL_URI &&
+      process.env.DRUPAL_AUTH_URI &&
+      process.env.DRUPAL_CLIENT_ID &&
+      process.env.DRUPAL_CLIENT_SECRET
+  );
+
 export const getClientWithAuth = () => getClient(DRUPAL_CONFIG);
