@@ -1,22 +1,18 @@
-FROM node:20-alpine
-
+FROM node:20-alpine AS deps
 WORKDIR /app
+COPY apps/web/nextjs/package.json apps/web/nextjs/package-lock.json ./
+RUN npm ci
 
-# Copy package files
-COPY package.json package-lock.json* ./
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY apps/web/nextjs ./
+RUN npm run build
 
-# Install dependencies
-RUN npm ci --only=production
-
-# Copy built application
-COPY .next ./.next
-COPY public ./public
-COPY next.config.* ./
-
-# Expose port
-EXPOSE 8080
-
+FROM node:20-alpine AS runner
+WORKDIR /app
 ENV PORT=8080
 ENV NODE_ENV=production
-
+COPY --from=builder /app ./
+EXPOSE 8080
 CMD ["npm", "start"]

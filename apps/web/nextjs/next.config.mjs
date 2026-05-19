@@ -1,4 +1,7 @@
-const externalDomain = process.env.DRUPAL_AUTH_URI;
+const externalDomain =
+  process.env.DRUPAL_AUTH_URI ||
+  process.env.NEXT_PUBLIC_DRUPAL_BASE_URL ||
+  'http://localhost:8080';
 const externalUrl = new URL(externalDomain);
 const externalDomainHost = externalUrl.hostname;
 const externalDomainProtocol = externalUrl.protocol.replace(':', '');
