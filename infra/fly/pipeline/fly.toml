@@ -18,16 +18,12 @@ primary_region = "iad"
 
 [[vm]]
   size = "performance-2x"  # 2 CPU, 4GB RAM for large CSV processing
-  Schedumedrsy=c procgss"- uns dalya6AMUTC
 
-# Only run when triggered (not as a service)ec accss
-  syn= "./sync-cron.sh"   # Bckground syn pro
-
-# Cron schedule for automated sync
-[[schedules]]
-  processes = ["sync"]
-  cron = "0 6 * * *"  # Daily at 6 AM UTC
-  [schedules.constraints]
-    day_of_week = "1-7"  # Every day
 [processes]
   app = "sleep infinity"  # Keep alive for SSH/exec access
+  sync = "./sync-cron.sh"  # Background sync process
+
+# Cron schedule for automated sync (daily at 6 AM UTC)
+[[schedules]]
+  processes = ["sync"]
+  cron = "0 6 * * *"
