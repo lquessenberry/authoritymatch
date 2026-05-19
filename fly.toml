@@ -2,7 +2,7 @@ app = "authoritymatch-drupal"
 primary_region = "ord"
 
 [build]
-  dockerfile = "./Dockerfile"
+  dockerfile = "infra/fly/drupal/Dockerfile"
 
 [env]
   DRUPAL_ENV = "production"

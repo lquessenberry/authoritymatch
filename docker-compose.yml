@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  drupal:
+    image: authoritymatch-drupal:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - drupal_files:/var/www/html/web/sites/default/files
+      - ./drupal/web/modules/custom:/var/www/html/web/modules/custom:ro
+      - ./drupal/config:/var/www/html/config:ro
+    environment:
+      - DRUPAL_ENV=production
+      - DRUPAL_DATABASE_URL=sqlite:///var/www/html/web/sites/default/files/drupal.sqlite
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  nextjs:
+    image: authoritymatch-web:latest
+    ports:
+      - "3000:8080"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_DRUPAL_BASE_URL=http://localhost:8080
+    depends_on:
+      - drupal
+
+volumes:
+  drupal_files:
