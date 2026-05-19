@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_dba_name
+    - node.type.authority
+id: node.authority.field_dba_name
+field_name: field_dba_name
+entity_type: node
+bundle: authority
+label: 'DBA Name'
+description: 'Doing Business As name'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

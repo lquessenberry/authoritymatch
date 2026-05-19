@@ -1,0 +1,277 @@
+"""
+AuthorityMatch GraphQL Schema Extension
+"""
+
+extend type Query {
+  authorities(
+    filter: AuthorityFilterInput
+    sort: AuthoritySortInput
+    pagination: PaginationInput
+  ): AuthorityConnection
+
+  authority(dotNumber: String!): Authority
+
+  factors(
+    filter: FactorFilterInput
+    pagination: PaginationInput
+  ): FactorConnection
+
+  matches(
+    authorityId: String
+    factorId: String
+    status: MatchStatus
+  ): MatchConnection
+}
+
+type Authority {
+  id: ID!
+  dotNumber: String!
+  legalName: String!
+  dbaName: String
+  status: String!
+  carrierOperation: String
+  
+  physicalAddress: Address
+  phone: String
+  email: String
+  
+  totalDrivers: Int!
+  totalPowerUnits: Int!
+  
+  safetyRating: String
+  addDate: String
+  mcs150Date: String
+  
+  score: AuthorityScore
+  
+  createdAt: String!
+  updatedAt: String!
+  lastSyncedAt: String!
+}
+
+type AuthorityScore {
+  overall: Int!
+  grade: String!
+  safety: ScoreComponent!
+  stability: ScoreComponent!
+  scale: ScoreComponent!
+  compliance: ScoreComponent!
+  geography: ScoreComponent!
+  calculatedAt: String!
+}
+
+type ScoreComponent {
+  score: Int!
+  weight: Int!
+  factors: [ScoreFactor!]!
+}
+
+type ScoreFactor {
+  name: String!
+  value: Float!
+  description: String
+}
+
+type Factor {
+  id: ID!
+  companyName: String!
+  legalName: String!
+  status: String!
+  verificationStatus: String!
+  
+  contactInfo: ContactInfo!
+  preferences: FactorPreferences!
+  offerings: FactorOfferings!
+  metrics: FactorMetrics!
+  
+  createdAt: String!
+  updatedAt: String!
+}
+
+type ContactInfo {
+  email: String!
+  phone: String!
+  website: String
+  address: Address
+}
+
+type FactorPreferences {
+  preferredStates: [String!]!
+  excludedStates: [String!]!
+  minFleetSize: Int!
+  maxFleetSize: Int!
+  minAuthorityScore: Int!
+  maxOosRate: Float!
+  requiredInsurance: Boolean!
+  riskTolerance: String!
+  acceptNewAuthorities: Boolean!
+}
+
+type FactorOfferings {
+  advanceRates: [Float!]!
+  baseFee: Float!
+  feeStructure: String!
+  fundingSpeed: Int!
+  services: FactorServices!
+}
+
+type FactorServices {
+  recourse: Boolean!
+  nonRecourse: Boolean!
+  fuelAdvances: Boolean!
+  fuelCards: Boolean!
+  creditChecks: Boolean!
+  collections: Boolean!
+  accounting: Boolean!
+  mobileApp: Boolean!
+}
+
+type FactorMetrics {
+  totalClients: Int!
+  activeClients: Int!
+  averageFundingTime: Int!
+  clientRetentionRate: Float!
+  defaultRate: Float!
+  clientSatisfaction: Float!
+  matchAcceptanceRate: Float!
+}
+
+type Match {
+  id: ID!
+  authority: Authority!
+  factor: Factor!
+  score: Float!
+  compatibility: CompatibilityBreakdown!
+  status: String!
+  createdAt: String!
+  sentAt: String
+  viewedAt: String
+  respondedAt: String
+  proposedTerms: ProposedTerms
+  finalTerms: FinalTerms
+}
+
+type CompatibilityBreakdown {
+  geographic: Float!
+  fleetSize: Float!
+  riskProfile: Float!
+  preferences: Float!
+  financial: Float!
+}
+
+type ProposedTerms {
+  advanceRate: Float!
+  fee: Float!
+  estimatedMonthlyVolume: Float!
+  notes: String
+}
+
+type FinalTerms {
+  advanceRate: Float!
+  fee: Float!
+  contractStart: String!
+  contractEnd: String
+}
+
+type Address {
+  street: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String!
+}
+
+type AuthorityConnection {
+  edges: [AuthorityEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AuthorityEdge {
+  node: Authority!
+  cursor: String!
+}
+
+type FactorConnection {
+  edges: [FactorEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type FactorEdge {
+  node: Factor!
+  cursor: String!
+}
+
+type MatchConnection {
+  edges: [MatchEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type MatchEdge {
+  node: Match!
+  cursor: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+input AuthorityFilterInput {
+  state: [String!]
+  status: [String!]
+  minScore: Int
+  maxScore: Int
+  minFleetSize: Int
+  maxFleetSize: Int
+  safetyRating: [String!]
+  search: String
+}
+
+input AuthoritySortInput {
+  field: AuthoritySortField!
+  direction: SortDirection!
+}
+
+enum AuthoritySortField {
+  DOT_NUMBER
+  LEGAL_NAME
+  STATE
+  SCORE
+  UPDATED_AT
+  TOTAL_DRIVERS
+}
+
+input FactorFilterInput {
+  status: [String!]
+  riskTolerance: [String!]
+  states: [String!]
+  minAdvanceRate: Float
+  maxFee: Float
+}
+
+input PaginationInput {
+  first: Int
+  after: String
+  last: Int
+  before: String
+}
+
+enum SortDirection {
+  ASC
+  DESC
+}
+
+enum MatchStatus {
+  PENDING
+  SENT
+  VIEWED
+  INTERESTED
+  ACCEPTED
+  DECLINED
+  EXPIRED
+}

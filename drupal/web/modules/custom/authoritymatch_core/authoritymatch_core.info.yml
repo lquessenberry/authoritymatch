@@ -1,0 +1,19 @@
+name: 'AuthorityMatch Core'
+type: module
+description: 'Core functionality for AuthorityMatch including content types, fields, migrations, and GraphQL schema.'
+core_version_requirement: '^10 || ^11'
+package: 'AuthorityMatch'
+dependencies:
+  - drupal:node
+  - drupal:field
+  - drupal:taxonomy
+  - drupal:datetime
+  - drupal:text
+  - drupal:number
+  - drupal:options
+  - drupal:entity_reference
+  - drupal:migrate
+  - drupal:migrate_plus
+  - drupal:migrate_tools
+  - graphql_compose:graphql_compose
+  - simple_oauth:simple_oauth

@@ -1,0 +1,58 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - authoritymatch_core
+id: authorities
+label: 'Import FMCSA Authorities from JSON'
+source:
+  plugin: authority_json_source
+  file_path: /data/batch_00001.json
+process:
+  title:
+    plugin: default_value
+    default_value: 'Authority'
+  field_dot_number: dot_number
+  field_legal_name: legal_name
+  field_dba_name: dba_name
+  field_status: status
+  field_carrier_operation: carrier_operation
+  field_total_drivers: total_drivers
+  field_total_power_units: total_power_units
+  field_phone: phone
+  field_email: email
+  field_add_date:
+    plugin: format_date
+    source: add_date
+    from_format: 'Y-m-d'
+    to_format: 'Y-m-d'
+    to_timezone: 'UTC'
+    from_timezone: 'UTC'
+  field_physical_address:
+    plugin: address_field
+    source:
+      - street
+      - city
+      - state
+      - zip
+    country_code: US
+    langcode: en
+destination:
+  plugin: 'entity:node'
+  default_bundle: authority
+  overwrite_properties:
+    - field_dot_number
+    - field_legal_name
+    - field_dba_name
+    - field_status
+    - field_carrier_operation
+    - field_total_drivers
+    - field_total_power_units
+    - field_phone
+    - field_email
+    - field_add_date
+    - field_physical_address
+migration_dependencies:
+  required: []
+  optional: []

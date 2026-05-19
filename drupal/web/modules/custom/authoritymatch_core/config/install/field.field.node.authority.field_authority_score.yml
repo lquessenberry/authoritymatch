@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_authority_score
+    - node.type.authority
+  module:
+    - authoritymatch_core
+id: node.authority.field_authority_score
+field_name: field_authority_score
+entity_type: node
+bundle: authority
+label: 'Authority Score'
+description: 'Computed authority grading score'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: authority_score

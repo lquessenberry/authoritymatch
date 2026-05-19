@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legal_name
+    - node.type.authority
+id: node.authority.field_legal_name
+field_name: field_legal_name
+entity_type: node
+bundle: authority
+label: 'Legal Name'
+description: 'Registered legal business name'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
