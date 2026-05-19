@@ -9,13 +9,29 @@ import './globals.css'
 
 const { publicRuntimeConfig } = getConfig();
 
+type MenuItem = {
+  title: string
+  url?: string
+  children: {
+    title: string
+    url?: string
+  }[]
+}
+
+type MenuData = {
+  menu?: {
+    name?: string
+    items: MenuItem[]
+  } | null
+}
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let menuData: any = null
-  let footerData: any = null
+  let menuData: MenuData | null = null
+  let footerData: MenuData | null = null
 
   if (hasDrupalConfig()) {
     const client = await getClientWithAuth();
