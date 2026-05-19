@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuthorityMatch - Smart Freight Authority Matching</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .tagline { font-size: 1.2rem; }
+            .stats { flex-direction: column; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AuthorityMatch</h1>
+            <p class="tagline">Smart Matching for Freight Authorities & Factoring Companies</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-number">4.4M+</span>
+                <span class="stat-label">FMCSA Authorities</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">Real-Time</span>
+                <span class="stat-label">Data Sync</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">AI-Powered</span>
+                <span class="stat-label">Risk Scoring</span>
+            </div>
+        </div>
+
+        <div class="hero">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #333;">Revolutionizing Freight Authority Discovery</h2>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>📊 Authority Database</h3>
+                    <p>Complete FMCSA carrier census with automated daily sync. Track DOT numbers, safety ratings, insurance status, and fleet metrics.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>🎯 Smart Matching</h3>
+                    <p>AI-powered matching engine connects freight authorities with the perfect factoring partners based on risk profiles and preferences.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>⚡ Real-Time Updates</h3>
+                    <p>Instant alerts for critical changes: safety rating downgrades, insurance cancellations, authority revocations.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>🔒 Secure Platform</h3>
+                    <p>Built on Drupal 11 + Next.js 15 with OAuth2 authentication. Enterprise-grade security for sensitive financial data.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>📱 Modern Stack</h3>
+                    <p>GraphQL API, TypeScript, PostgreSQL, and Fly.io hosting. Scalable architecture ready for millions of records.</p>
+                </div>
+                
+                <div class="feature">
+                    <h3>🤝 Factor Network</h3>
+                    <p>Join the network of freight factoring companies competing to offer the best rates to qualified authorities.</p>
+                </div>
+            </div>
+
+            <div class="cta">
+                <a href="https://github.com/lquessenberry/authoritymatch" class="btn">View on GitHub</a>
+                <a href="https://github.com/lquessenberry/authoritymatch/blob/main/README.md" class="btn btn-secondary">Read Docs</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built with ❤️ for the freight industry</p>
+            <p><a href="https://github.com/lquessenberry/authoritymatch">github.com/lquessenberry/authoritymatch</a></p>
+        </footer>
+    </div>
+
+    <!-- GitHub corner -->
+    <a href="https://github.com/lquessenberry/authoritymatch" class="github-corner" aria-label="View source on GitHub">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#667eea; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.0,77.4 C122.8,75.2 128.0,76.6 128.0,76.6 C133.4,73.0 141.0,75.2 142.2,77.4 C143.4,79.6 141.0,87.4 141.0,87.4 C141.0,87.4 137.0,99.7 131.4,105.6 C131.4,105.6 135.6,107.1 139.0,112.5 C139.0,112.5 143.8,108.3 146.0,106.0 C148.2,103.7 150.5,102.0 152.8,101.2 C155.1,100.4 156.0,99.9 156.0,99.9 C157.3,101.7 158.0,102.9 158.0,102.9 C158.0,102.9 157.4,105.8 154.8,108.5 C152.2,111.2 148.3,114.0 146.0,115.2 C146.0,115.2 148.0,119.2 148.0,122.5 C148.0,127.0 148.0,136.5 148.0,139.1 C148.0,141.7 149.3,144.3 149.3,144.3 C149.3,144.3 154.0,142.0 158.0,137.5 C163.8,131.1 167.0,120.5 167.0,110.5 C167.0,91.9 152.2,76.9 133.5,76.9 C114.8,76.9 100.0,91.9 100.0,110.5 C100.0,120.5 103.8,131.1 110.0,137.5 C114.0,142.0 119.3,144.3 119.3,144.3 C119.3,144.3 119.8,141.7 119.8,139.1 C119.8,136.5 119.8,127.0 119.8,122.5 C119.8,119.2 121.8,115.2 121.8,115.2 C119.5,114.0 115.6,111.2 113.0,108.5 C110.4,105.8 109.8,102.9 109.8,102.9 C109.8,102.9 110.5,101.7 111.8,99.9 C111.8,99.9 112.7,100.4 115.0,101.2 C117.3,102.0 119.6,103.7 121.8,106.0 C124.0,108.3 128.8,112.5 128.8,112.5 C132.2,107.1 136.4,105.6 136.4,105.6 C130.8,99.7 126.8,87.4 126.8,87.4 C126.8,87.4 124.4,79.6 125.6,77.4 C126.8,75.2 134.4,73.0 139.8,76.6 C139.8,76.6 145.0,75.2 147.8,77.4 C147.3,78.6 145.8,82.7 148.8,89.6 C148.8,89.6 154.0,99.7 139.5,109.0 L128.3,109.0 Z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+</body>
+</html>
