@@ -3,35 +3,25 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { MainMenuQuery, FooterMenuQuery } from "@/graphql/queries";
 import { getClientWithAuth, hasDrupalConfig } from "@/utils/client.server";
+import type { ComponentProps } from "react";
 import getConfig from 'next/config';
 
 import './globals.css'
 
 const { publicRuntimeConfig } = getConfig();
 
-type MenuItem = {
-  title: string
-  url?: string
-  children: {
-    title: string
-    url?: string
-  }[]
-}
-
-type MenuData = {
-  menu?: {
-    name?: string
-    items: MenuItem[]
-  } | null
-}
+type HeaderMenu = NonNullable<ComponentProps<typeof Header>['mainMenu']>
+type FooterMenu = NonNullable<ComponentProps<typeof Footer>['footerMenu']>
+type HeaderQueryData = { menu?: HeaderMenu | null }
+type FooterQueryData = { menu?: FooterMenu | null }
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let menuData: MenuData | null = null
-  let footerData: MenuData | null = null
+  let menuData: HeaderQueryData | null = null
+  let footerData: FooterQueryData | null = null
 
   if (hasDrupalConfig()) {
     const client = await getClientWithAuth();

@@ -155,9 +155,6 @@ const SelectSeparator = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HT
 )
 SelectSeparator.displayName = "SelectSeparator"
 
-const SelectScrollUpButton = ({ children }: { children?: React.ReactNode }) => <>{children}</>
-const SelectScrollDownButton = ({ children }: { children?: React.ReactNode }) => <>{children}</>
-
 export {
   Select,
   SelectGroup,
@@ -167,6 +164,4 @@ export {
   SelectLabel,
   SelectItem,
   SelectSeparator,
-  SelectScrollUpButton,
-  SelectScrollDownButton,
 }
