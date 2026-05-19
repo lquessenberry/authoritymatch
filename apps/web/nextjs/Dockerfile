@@ -6,8 +6,8 @@ RUN npm ci
 
 FROM node:20-alpine AS builder
 WORKDIR /app
-ENV DRUPAL_AUTH_URI=http://localhost:8080
-ENV NEXT_PUBLIC_DRUPAL_BASE_URL=http://localhost:8080
+ENV DRUPAL_AUTH_URI=https://drupal.invalid
+ENV NEXT_PUBLIC_DRUPAL_BASE_URL=https://drupal.invalid
 COPY --from=deps /app/node_modules ./node_modules
 COPY apps/web/nextjs ./
 RUN npm run build
