@@ -9,8 +9,8 @@ export default function HomePage() {
         </h1>
         <p className="text-xl text-muted-foreground">Factor Portal</p>
         <p className="text-muted-foreground">
-          Manage your lead feed, review trucker profiles, and grow your factoring
-          book with newly authorized carriers.
+          Every factoring company signup gets a customizable Puck-powered dashboard
+          hydrated by Drupal content, API connections, and export-ready lead data.
         </p>
         <div className="flex gap-3 justify-center">
           <Link
@@ -18,6 +18,12 @@ export default function HomePage() {
             className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-2 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90 transition-colors"
           >
             Go to Dashboard
+          </Link>
+          <Link
+            href="/dashboard/customize"
+            className="inline-flex items-center justify-center rounded-md border border-input px-6 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+          >
+            Open Customizer
           </Link>
         </div>
       </div>

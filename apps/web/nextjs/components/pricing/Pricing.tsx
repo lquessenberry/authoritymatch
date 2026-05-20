@@ -1,6 +1,6 @@
-import { Card } from '@/components/ui/card';
+import { Card } from '@authoritymatch/ui';
 import { Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@authoritymatch/ui';
 import Link from 'next/link';
 
 export interface PricingCardProps {

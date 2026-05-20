@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from '@authoritymatch/ui';
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { MediaImage } from '@/lib/types';
 

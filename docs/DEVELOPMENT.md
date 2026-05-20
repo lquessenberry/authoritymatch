@@ -151,6 +151,16 @@ pnpm dlx shadcn-ui@latest add button card input
 import { Button } from "@authoritymatch/ui";
 ```
 
+Design system policy:
+
+- `@authoritymatch/ui` is the single source of truth for reusable tokens and primitives.
+- Do not add new app-local duplicates for `button`, `input`, `label`, `card`, `dialog`, `tabs`, `select`, or `tooltip` under `apps/*/components/ui`.
+- Run `pnpm design-system:check` before opening PRs that touch shared UI.
+
+Storybook design-system docs live in:
+
+- `/home/runner/work/authoritymatch/authoritymatch/apps/web/nextjs/components/design-system/DesignSystem.mdx`
+
 ### GraphQL Integration
 
 The Next.js app uses URQL with GraphQL fragments:

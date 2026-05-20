@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Design System/Overview" />
+
+# AuthorityMatch Design System
+
+`@authoritymatch/ui` is the canonical design system package.
+
+## Source of truth
+
+- Shared primitives and reusable composites live in `packages/ui`.
+- App-level code should import shared primitives from `@authoritymatch/ui`.
+
+## Foundation
+
+- Tokens: color, spacing, typography, radius, shadows, motion
+- Accessibility: keyboard navigation, visible focus, semantic roles, accessible naming
+- Interaction: consistent hover/active/disabled/focus-visible states
+
+## Component API conventions
+
+- Components export in PascalCase.
+- Variants use `variant`/`size` with class-variance-authority.
+- Public exports must be defined in `packages/ui/src/index.ts`.
+
+## Review checklist
+
+- [ ] Component is reusable across apps
+- [ ] Component API matches package conventions
+- [ ] Accessibility requirements are met
+- [ ] Storybook docs cover intended states and usage
+- [ ] No duplicated primitive was added under `apps/*/components/ui`

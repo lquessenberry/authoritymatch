@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from '@authoritymatch/ui';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Link from 'next/link';
 

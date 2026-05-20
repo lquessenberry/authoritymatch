@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@authoritymatch/ui';
 import { LinkFormat, TextFormat } from '@/lib/types';
 
 export interface TextProps {

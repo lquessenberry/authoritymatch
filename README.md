@@ -39,7 +39,7 @@ authoritymatch/
 │   └── nextjs/            # (moved to apps/web/)
 ├── apps/
 │   ├── web/               # Public marketing + trucker self-serve
-│   └── dashboard/         # Factor portal (Next.js 15, port 4445)
+│   └── dashboard/         # Factor portal + Puck-powered company dashboards
 ├── packages/
 │   ├── ui/                # Shared shadcn/ui components
 │   ├── core/              # Types, calculators, matching logic
@@ -55,7 +55,7 @@ authoritymatch/
 | Layer         | Technology                              |
 | ------------- | --------------------------------------- |
 | **Backend**   | Drupal 11 + GraphQL (drupalx-decoupled) |
-| **Frontend**  | Next.js 15 + TypeScript + Tailwind      |
+| **Frontend**  | Next.js 15 + TypeScript + Tailwind + Puck |
 | **Auth**      | Simple OAuth (JWT)                      |
 | **Database**  | PostgreSQL (Fly)                        |
 | **Hosting**   | Fly.io (primary)                        |
@@ -186,6 +186,7 @@ See `.env.example` for full list.
 - [x] Scaffold setup (Turborepo + drupalx-decoupled)
 - [x] Fly.io deployment configs
 - [x] Factor dashboard app scaffold (`apps/dashboard/`)
+- [x] Puck-powered customizable company dashboard scaffold
 - [ ] Drupal content types (In Progress)
 - [ ] FMCSA data pipeline
 - [ ] Factor dashboard

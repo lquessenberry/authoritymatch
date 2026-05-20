@@ -4,11 +4,11 @@ export default function SettingsPage() {
       <div>
         <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
         <p className="text-muted-foreground">
-          Manage your factor profile and matching criteria.
+          Configure the company profile, dashboard seed data, and downstream export
+          defaults that power each factoring workspace.
         </p>
       </div>
 
-      {/* Factor profile form placeholder */}
       <div className="rounded-lg border border-border bg-card p-6 space-y-4 max-w-2xl">
         <h3 className="text-lg font-medium">Factor Profile</h3>
         <div className="grid gap-4">
@@ -31,6 +31,14 @@ export default function SettingsPage() {
               placeholder="500000"
             />
           </div>
+          <Field
+            label="Drupal Space"
+            placeholder="e.g. factor/sunbelt-freight-funding"
+          />
+          <Field
+            label="Primary API Workspace"
+            placeholder="e.g. salesforce-primary"
+          />
         </div>
         <button
           type="button"
@@ -39,7 +47,8 @@ export default function SettingsPage() {
           Save Profile
         </button>
         <p className="text-xs text-muted-foreground">
-          Profile editing will be wired to the Drupal GraphQL API in Phase 1.
+          Saving here will eventually persist the Puck dashboard schema, Drupal
+          hydration context, and export defaults for each factoring company signup.
         </p>
       </div>
     </div>

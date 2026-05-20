@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button } from '@authoritymatch/ui';
 import StatCard, { StatCardProps } from '../stat-card/StatCard';
 import { getLucideIcon } from '@/utils/dynamic-icon';
 import { LinkFormat } from '@/lib/types';
