@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from '/ui';
+import { Card, CardContent, CardHeader, CardTitle } from '@authoritymatch/ui';
 import { Badge } from "@/components/ui/badge";
-import { Button } from '/ui';
+import { Button } from '@authoritymatch/ui';
 import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '/ui';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@authoritymatch/ui';
 import {
   Table,
   TableBody,

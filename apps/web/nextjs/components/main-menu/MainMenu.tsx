@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Button } from '/ui'
+import { Button } from '@authoritymatch/ui'
 import {
   Sheet,
   SheetContent,

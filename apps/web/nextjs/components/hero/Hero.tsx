@@ -1,4 +1,4 @@
-import { Button } from '/ui';
+import { Button } from '@authoritymatch/ui';
 import './Hero.scss';
 import { TextFormat, LinkFormat } from "@/lib/types";
 

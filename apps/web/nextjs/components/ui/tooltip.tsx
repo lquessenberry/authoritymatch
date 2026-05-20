@@ -1,6 +1,1 @@
-export {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@authoritymatch/ui';
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@authoritymatch/ui';

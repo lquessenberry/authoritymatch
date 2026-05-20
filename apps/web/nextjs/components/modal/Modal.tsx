@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '/ui';
+import { Button } from '@authoritymatch/ui';
 import {
   Dialog,
   DialogContent,
@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '/ui';
+} from '@authoritymatch/ui';
 
 interface ModalTypes {
   buttonText: string;

@@ -1,14 +1,14 @@
 'use client'
 
 import { useState } from 'react';
-import { Button } from '/ui'
+import { Button } from '@authoritymatch/ui'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from '/ui'
+} from '@authoritymatch/ui'
 
 interface GalleryProps {
   mediaItems: React.ReactNode[]

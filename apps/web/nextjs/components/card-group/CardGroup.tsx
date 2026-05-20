@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '/ui';
-import { Button } from '/ui';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@authoritymatch/ui';
+import { Button } from '@authoritymatch/ui';
 import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import StatCard, { StatCardProps } from '../stat-card/StatCard';

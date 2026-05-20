@@ -49,7 +49,10 @@ const duplicates = allFiles.filter((filePath) => {
     source.length > 0 &&
     source
       .split('\n')
-      .every((line) => line.includes("from '@authoritymatch/ui'") || line.trim() === '');
+      .every(
+        (line) =>
+          /from ['"]@authoritymatch\/ui['"]/.test(line) || line.trim() === ''
+      );
 
   return !isProxyModule;
 });

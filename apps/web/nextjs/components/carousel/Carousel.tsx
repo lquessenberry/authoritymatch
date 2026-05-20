@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import { Carousel as UICarousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Card, CardContent } from '/ui';
+import { Card, CardContent } from '@authoritymatch/ui';
 
 export interface CarouselItemData {
   media?: ReactNode;

@@ -1,4 +1,4 @@
-import { Button } from '/ui';
+import { Button } from '@authoritymatch/ui';
 import { LinkFormat, TextFormat } from '@/lib/types';
 
 export interface TextProps {

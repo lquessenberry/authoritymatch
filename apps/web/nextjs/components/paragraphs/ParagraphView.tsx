@@ -1,5 +1,5 @@
 import RecentCards from '@/components/views/ViewRecentCards';
-import { Card, CardContent } from '/ui';
+import { Card, CardContent } from '@authoritymatch/ui';
 import { MediaImage } from '@/lib/types';
 
 export const ParagraphViewFragment = /* GraphQL */ `

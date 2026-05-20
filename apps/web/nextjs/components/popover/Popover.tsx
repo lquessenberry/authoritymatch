@@ -4,7 +4,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { Button } from '/ui'
+import { Button } from '@authoritymatch/ui'
 
 interface PopoverProps {
   title: string;
