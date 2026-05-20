@@ -20,8 +20,11 @@ pnpm install
 # 3. Start Drupal locally (requires Docker + DDEV)
 pnpm drupal:start
 
-# 4. Start Next.js frontend
+# 4. Start public web frontend (port 4444)
 cd apps/web/nextjs && pnpm dev
+
+# 5. Start factor dashboard (port 4445, separate terminal)
+cd apps/dashboard && pnpm dev
 ```
 
 ---
@@ -36,7 +39,7 @@ authoritymatch/
 │   └── nextjs/            # (moved to apps/web/)
 ├── apps/
 │   ├── web/               # Public marketing + trucker self-serve
-│   └── dashboard/         # Factor portal (Coming Soon)
+│   └── dashboard/         # Factor portal (Next.js 15, port 4445)
 ├── packages/
 │   ├── ui/                # Shared shadcn/ui components
 │   ├── core/              # Types, calculators, matching logic
@@ -182,6 +185,7 @@ See `.env.example` for full list.
 
 - [x] Scaffold setup (Turborepo + drupalx-decoupled)
 - [x] Fly.io deployment configs
+- [x] Factor dashboard app scaffold (`apps/dashboard/`)
 - [ ] Drupal content types (In Progress)
 - [ ] FMCSA data pipeline
 - [ ] Factor dashboard
