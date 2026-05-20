@@ -12,7 +12,10 @@
     "drupal:stop": "cd drupal && ddev stop",
     "fly:deploy:drupal": "fly deploy --config infra/fly/drupal/fly.toml",
     "fly:deploy:web": "fly deploy --config infra/fly/web/fly.toml",
-    "fly:deploy:dashboard": "fly deploy --config infra/fly/dashboard/fly.toml"
+    "fly:deploy:dashboard": "fly deploy --config infra/fly/dashboard/fly.toml",
+    "fly:deploy:pipeline": "fly deploy --config infra/fly/pipeline/fly.toml",
+    "dev:web": "cd apps/web/nextjs && pnpm dev",
+    "dev:dashboard": "cd apps/dashboard && pnpm dev"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

@@ -2,10 +2,12 @@ app = "authoritymatch-dashboard"
 primary_region = "ord"
 
 [build]
-  dockerfile = "Dockerfile"
+  dockerfile = "apps/dashboard/Dockerfile"
 
 [env]
   PORT = "8080"
+  DRUPAL_HOSTNAME = "authoritymatch-drupal.fly.dev"
+  NEXT_PUBLIC_DRUPAL_BASE_URL = "https://authoritymatch-drupal.fly.dev"
 
 [http_service]
   internal_port = 8080
