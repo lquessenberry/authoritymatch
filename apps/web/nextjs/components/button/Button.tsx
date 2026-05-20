@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Button as ShadcnButton, ButtonProps as ShadcnButtonProps } from "@/components/ui/button";
+import { Button as ShadcnButton, ButtonProps as ShadcnButtonProps } from '/ui';
 import { LucideIcon } from 'lucide-react';
 
 export interface ButtonProps extends Omit<ShadcnButtonProps, 'asChild'> {

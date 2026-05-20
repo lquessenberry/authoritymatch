@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '/ui';
 import './Hero.scss';
 import { TextFormat, LinkFormat } from "@/lib/types";
 

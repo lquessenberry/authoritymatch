@@ -1,7 +1,7 @@
 'use client'
 
 import { Accordion as AccordionComponent, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
+import { Button } from '/ui'
 import Heading from '@/components/heading/Heading';
 
 export interface AccordionItemData {

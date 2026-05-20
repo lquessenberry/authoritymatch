@@ -1,8 +1,8 @@
 // Client Component
 'use client';
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from '/ui';
+import { Button } from '/ui';
 import { TextFormat } from "@/lib/types";
 
 export interface NewsletterProps {

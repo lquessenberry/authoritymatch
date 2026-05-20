@@ -1,4 +1,4 @@
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from '/ui';
 import { getLucideIcon } from '@/utils/dynamic-icon';
 
 export interface StatCardProps {

@@ -9,6 +9,7 @@ const externalDomainProtocol = externalUrl.protocol.replace(':', '');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ['@authoritymatch/ui', '@authoritymatch/core'],
   async rewrites() {
     return [
       {
