@@ -16,11 +16,15 @@ export default function DashboardLayout({
         </div>
         <nav className="flex-1 p-4 space-y-1">
           <NavItem href="/dashboard" label="Overview" />
-          <NavItem href="/leads" label="Lead Feed" />
-          <NavItem href="/settings" label="Settings" />
+          <NavItem href="/dashboard/leads" label="Lead Feed" />
+          <NavItem href="/dashboard/customize" label="Customizer" />
+          <NavItem href="/dashboard/exports" label="Exports" />
+          <NavItem href="/dashboard/settings" label="Settings" />
         </nav>
         <div className="p-4 border-t border-border">
-          <p className="text-xs text-muted-foreground">Factor Portal v0.1</p>
+          <p className="text-xs text-muted-foreground">
+            Factor Portal v0.2 · Puck + Drupal hydration
+          </p>
         </div>
       </aside>
 
